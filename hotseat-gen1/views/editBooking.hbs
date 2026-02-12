@@ -1,0 +1,28 @@
+<div class="panel">
+  <h1>Edit booking</h1>
+  <p class="muted">{{booking.room_name}} • Seat {{booking.seat}}</p>
+
+  <form method="post" action="/bookings/{{booking.id}}/edit" class="form">
+    <label>Your name</label>
+    <input name="booked_by" value="{{booking.booked_by}}" required />
+
+    <label>Date</label>
+    <input name="date" type="date" value="{{booking.date}}" required />
+
+    <div class="row gap">
+      <div class="grow">
+        <label>Start</label>
+        <input name="start_time" type="time" value="{{booking.start_time}}" required />
+      </div>
+      <div class="grow">
+        <label>End</label>
+        <input name="end_time" type="time" value="{{booking.end_time}}" required />
+      </div>
+    </div>
+
+    <div class="row gap">
+      <button class="btn primary" type="submit">Save changes</button>
+      <a class="btn" href="/bookings">Back</a>
+    </div>
+  </form>
+</div>

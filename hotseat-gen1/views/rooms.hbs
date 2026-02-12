@@ -1,0 +1,83 @@
+<div class="room-header">
+  <div>
+    <h1 class="page-title">{{room.name}}</h1>
+    <p class="muted">Pick a date, then choose a seat.</p>
+  </div>
+
+  <form method="get" action="/rooms/{{room.id}}" class="toolbar">
+    <label class="muted">Date</label>
+    <input name="date" type="date" value="{{date}}" class="input" />
+    <button class="btn" type="submit">Load</button>
+  </form>
+</div>
+
+{{#if errSeatTaken}}
+  <div class="alert">
+    That seat is already booked for this date. Pick another one.
+  </div>
+{{/if}}
+
+<div class="grid-2">
+  <div class="card">
+    <h2 class="card-title">Book a seat</h2>
+
+    <form method="post" action="/book" class="form">
+      <input type="hidden" name="room_id" value="{{room.id}}" />
+      <input type="hidden" name="date" value="{{date}}" />
+
+      <label>Your name</label>
+      <input name="booked_by" placeholder="Kyle" class="input" required />
+
+      <div class="two">
+        <div>
+          <label>Start</label>
+          <input name="start_time" type="time" value="{{defaultStart}}" class="input" required />
+        </div>
+        <div>
+          <label>End</label>
+          <input name="end_time" type="time" value="{{defaultEnd}}" class="input" required />
+        </div>
+      </div>
+
+      <label>Seat</label>
+      <select name="seat" class="input" required>
+        <option disabled selected value="">Select a seat</option>
+        {{#each seats}}
+          <option value="{{name}}">
+            {{name}}{{#if isBooked}} (BOOKED){{/if}}
+          </option>
+        {{/each}}
+      </select>
+
+      <p class="muted small">
+        Booked seats are shown. If you try to book one, it will be rejected.
+      </p>
+
+      <button class="btn primary" type="submit">Book seat</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <h2 class="card-title">Seat map (A–H, 1–17)</h2>
+      <span class="pill">{{seats.length}} seats</span>
+    </div>
+
+    <div class="seat-legend">
+      <span class="legend"><i class="dot free"></i> Free</span>
+      <span class="legend"><i class="dot booked"></i> Booked</span>
+    </div>
+
+    <div class="seat-wrap">
+      <div class="seat-grid">
+        {{#each seats}}
+          <div class="seat {{#if isBooked}}booked{{else}}free{{/if}}" data-seat="{{name}}">
+            {{name}}
+          </div>
+        {{/each}}
+      </div>
+    </div>
+
+    <p class="muted small">Tip: click a seat to auto-select it (we’ll wire this next).</p>
+  </div>
+</div>

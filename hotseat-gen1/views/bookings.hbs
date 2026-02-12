@@ -1,0 +1,41 @@
+<h1>Bookings</h1>
+<p class="muted">Gen 1: shows all bookings (no user login filtering yet).</p>
+
+{{#if bookings.length}}
+  <div class="panel">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Room</th>
+          <th>Seat</th>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each bookings}}
+          <tr>
+            <td>{{room_name}}</td>
+            <td>{{seat}}</td>
+            <td>{{booked_by}}</td>
+            <td>{{date}}</td>
+            <td>{{start_time}}–{{end_time}}</td>
+            <td class="right">
+              <a class="btn small" href="/bookings/{{id}}/edit">Edit</a>
+              <form method="post" action="/bookings/{{id}}/delete" class="inline">
+                <button class="btn small danger" type="submit">Cancel</button>
+              </form>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+{{else}}
+  <div class="panel">
+    <p>No bookings yet. Go grab a seat 🪑</p>
+    <a class="btn primary" href="/rooms">Book now</a>
+  </div>
+{{/if}}
