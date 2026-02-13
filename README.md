@@ -4,7 +4,9 @@ in terminal in a CMD TERMINDAL
 
 cd hotseat-gen1
 npm init
+
 npm i
+
 npm update
 
 in a GIT BASH terminal
