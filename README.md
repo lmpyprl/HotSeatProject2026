@@ -3,6 +3,7 @@ to setup pull into a folder, then do this in this order
 in terminal in a CMD TERMINDAL
 
 cd hotseat-gen1
+
 npm init
 
 npm i
