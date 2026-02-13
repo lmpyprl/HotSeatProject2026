@@ -11,6 +11,8 @@
   </form>
 </div>
 
+
+              {{!-- should we still do this, she said she liked the idea of choosing  --}}
 {{#if errSeatTaken}}
   <div class="alert">
     That seat is already booked for this date. Pick another one.
@@ -59,6 +61,7 @@
 
   <div class="card">
     <div class="card-top">
+                    {{!-- this can be changed --}}
       <h2 class="card-title">Seat map (A–H, 1–17)</h2>
       <span class="pill">{{seats.length}} seats</span>
     </div>
@@ -78,6 +81,8 @@
       </div>
     </div>
 
-    <p class="muted small">Tip: click a seat to auto-select it (we’ll wire this next).</p>
+
+          {{!-- not done yet --}}
+    <p class="muted small">Tip: click a seat to auto-select it.</p>
   </div>
 </div>
